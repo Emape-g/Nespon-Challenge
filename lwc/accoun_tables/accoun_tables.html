@@ -1,0 +1,86 @@
+<template>
+    
+    <template if:true={isLoading}>
+        <lightning-spinner alternative-text="Cargando..." size="medium"></lightning-spinner>
+    </template>
+
+    
+    <lightning-button 
+        label="Update Account Level" 
+        onclick={handleUpdateAccounts} 
+        class="slds-m-around_medium">
+    </lightning-button>
+
+    
+    <div class="slds-grid slds-gutters slds-m-around_medium">
+        <div class="slds-col">
+            <lightning-input 
+                type="text" 
+                label="Filtrar por Name" 
+                name="name" 
+                value={filterName}
+                onchange={handleFilterChange}>
+            </lightning-input>
+        </div>
+        <div class="slds-col">
+            <lightning-input 
+                type="text" 
+                label="Filtrar por Phone" 
+                name="phone" 
+                value={filterPhone}
+                onchange={handleFilterChange}>
+            </lightning-input>
+        </div>
+        <div class="slds-col">
+            <lightning-input 
+                type="text" 
+                label="Owner Id" 
+                name="owner" 
+                value={filterOwner}
+                onchange={handleFilterChange}>
+            </lightning-input>
+        </div>
+    </div>
+
+    
+    <lightning-card title="Level 1 Accounts" icon-name="standard:account">
+        <lightning-datatable 
+            key-field="Id"
+            data={paginatedLevel1}
+            columns={columns}
+            onrowselection={handleRowSelection}
+            onsort={handleSort}
+            sorted-by={sortBy}
+            sorted-direction={sortDirection}>
+        </lightning-datatable>
+        <div class="slds-m-around_small">
+            <lightning-button label="Anterior" onclick={prevPage} class="slds-m-right_small"></lightning-button>
+            <lightning-button label="Siguiente" onclick={nextPage}></lightning-button>
+            <p>Página {page} de {totalPagesLevel1}</p>
+        </div>
+    </lightning-card>
+
+   
+    <lightning-card title="Level 2 Accounts" icon-name="standard:account" class="slds-m-top_medium">
+        <lightning-datatable 
+            key-field="Id"
+            data={paginatedLevel2}
+            columns={columns}
+            onrowselection={handleRowSelection}
+            onsort={handleSort}
+            sorted-by={sortBy}
+            sorted-direction={sortDirection}>
+        </lightning-datatable>
+        <div class="slds-m-around_small">
+            <lightning-button label="Anterior" onclick={prevPage} class="slds-m-right_small"></lightning-button>
+            <lightning-button label="Siguiente" onclick={nextPage}></lightning-button>
+            <p>Página {page} de {totalPagesLevel2}</p>
+        </div>
+    </lightning-card>
+</template>
+
+
+
+
+
+
